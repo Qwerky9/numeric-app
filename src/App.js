@@ -1,24 +1,30 @@
 import React from 'react';
 import './App.css';
 import Home from './Home'
-import { Route, Routes } from "react-router-dom";
-import NavBar from './NavBar';
-import Bisection from './components/bisection'
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import Bisection from './components/Bisection'
 import Secant from './components/Secant'
 import FalsePosition from './components/FalsePosition'
+
+import ReactDOM from "react-dom";
+import Sidebar from './Sidebar';
 
 function App() {
   return (
     <div className='App'>
-      <NavBar />
+      <BrowserRouter>
+      <Sidebar />
       <Routes>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/bisection" element={<Bisection/>}/>
+      <Route path="/" exact element={<Home/>}/>
+      <Route path="/Bisection" element={<Bisection/>}/>
       <Route path="/falseposition" element={<FalsePosition/>}/>
       <Route path="/Secant" element={<Secant/>}/>
       </Routes>
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
+
+ReactDOM.render(<App />, document.getElementById("root"));
