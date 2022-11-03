@@ -40,7 +40,6 @@ function Bisection() {
         else{ xr=xm }
         let xnew = 0
     let i=0
-    let t=""
     while(Er>Err){
       xm = (xl+xr)/2.0;
       fxm =  expr.evaluate({ x: xm })
@@ -55,13 +54,14 @@ function Bisection() {
         xr=xm 
       }
       Er = Math.abs((xm-xnew)/xm)*100.0
+      let finalexm = expr.evaluate({x:xm})
       i++
-      t+=i
       document.getElementById("r").innerHTML = "Iteration:"+i;
       document.getElementById("xl").innerHTML = "Xl="+xl+", Fxl="+fxl;
       document.getElementById("xr").innerHTML = "Xr="+xr+", Fxr="+fxr;
       document.getElementById("xm").innerHTML = "Xm="+xm+", Fxl="+fxm;
       document.getElementById("er").innerHTML = "Error="+Er+"%";
+      document.getElementById("result").innerHTML = "Result="+finalexm;
     }
   }
 
@@ -89,6 +89,7 @@ function Bisection() {
       <p id='xr'></p>
       <p id='xm'></p>
       <p id='er'></p>
+      <p id='result'></p>
     </div>
   );
   }

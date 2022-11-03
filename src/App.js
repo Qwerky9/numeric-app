@@ -8,6 +8,8 @@ import FalsePosition from './components/FalsePosition'
 
 import ReactDOM from "react-dom";
 import Sidebar from './Sidebar';
+import OnePointIteration from './components/OnePointIteration';
+import NewtonRaphson from './components/NewtonRaphson';
 
 function App() {
   return (
@@ -17,7 +19,9 @@ function App() {
       <Routes>
       <Route path="/" exact element={<Home/>}/>
       <Route path="/Bisection" element={<Bisection/>}/>
-      <Route path="/falseposition" element={<FalsePosition/>}/>
+      <Route path="/FalsePosition" element={<FalsePosition/>}/>
+      <Route path="/OnePointIteration" element={<OnePointIteration/>}/>
+      <Route path="/NewtonRaphson" element={<NewtonRaphson/>}/>
       <Route path="/Secant" element={<Secant/>}/>
       </Routes>
       </BrowserRouter>
