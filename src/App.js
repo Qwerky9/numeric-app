@@ -11,6 +11,17 @@ import Sidebar from './Sidebar';
 import OnePointIteration from './components/OnePointIteration';
 import NewtonRaphson from './components/NewtonRaphson';
 
+import Cramer from './components/CramerRule'
+import GuessElim from './components/GaussElim';
+import GuessJordan from './components/GaussJordan';
+import MatrixInversion from './components/MatrixInversion';
+import LUDecomposition from './components/LUDecomposition';
+import CholeskyDecomposition from './components/CholeskyDecomposition';
+// 
+import Jacobi from './components/Jacobi';
+import GuessSeidel from './components/GaussSeidel';
+import Langrange from './components/Lagrange';
+
 function App() {
   return (
     <div className='App'>
@@ -23,6 +34,15 @@ function App() {
       <Route path="/OnePointIteration" element={<OnePointIteration/>}/>
       <Route path="/NewtonRaphson" element={<NewtonRaphson/>}/>
       <Route path="/Secant" element={<Secant/>}/>
+      <Route path="/Cramer" element={<Cramer />} />
+      <Route path="/GuessElim" element={<GuessElim />}/>
+      <Route path="/GuessJordan" element={<GuessJordan />}/>
+      <Route path="/MatrixInversion" element={<MatrixInversion />}/>
+      <Route path="/LUDecomposition" element={<LUDecomposition />}/>
+      <Route path="/CholeskyDecomposition" element={<CholeskyDecomposition />}/>
+      <Route path="/Jacobi" element={<Jacobi />}/>
+      <Route path="/GuessSeidel" element={<GuessSeidel />}/>
+      <Route path="/Lagrange" element={<Langrange/>}/>
       </Routes>
       </BrowserRouter>
     </div>

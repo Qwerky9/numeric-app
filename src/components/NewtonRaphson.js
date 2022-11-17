@@ -1,5 +1,8 @@
 import React, {useState} from 'react'
 import { create, all } from 'mathjs'
+import ApexCharts from 'apexcharts'
+var xarray = [];
+var iarray = [];
 
 function NewtonRaphson() {
   var Parser = require('expr-eval').Parser;
@@ -11,6 +14,49 @@ function NewtonRaphson() {
   const [func, setfunc] = useState('')
   const [err, seterr] = useState('')
   const [x1, setx1] = useState('')
+
+  var xgraph = xarray;
+    var igraph = iarray;
+
+    var options = { //graph related
+        chart: {
+          type: 'line',
+          width: '750'
+        },
+        series: [{
+          name: "X value",
+          data: xgraph
+        }],
+        xaxis: {
+          categories: igraph
+        },
+        grid: {
+            row: {
+                colors: ['#e5e5e5', 'transparent'],
+                opacity: 0.5
+            }, 
+            column: {
+                colors: ['#f8f8f8', 'transparent'],
+            }, 
+            xaxis: {
+              lines: {
+                show: true
+              }
+            }
+          },
+          title: {
+            text: 'Newton-Raphson Graph',
+            align: 'cebter',
+            margin: 10,
+            offsetX: 0,
+            offsetY: 0,
+            floating: false
+        }
+      }
+      
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render(); //render chart (every time that state change)
+
   const ansround = []
   const ansx = []
   const ansxn = []
@@ -19,6 +65,8 @@ function NewtonRaphson() {
   const anser = []
   const config = { }
   const math = create(all, config)
+
+
   const submit = e => {
     e.preventDefault()
     fx = func
@@ -27,6 +75,8 @@ function NewtonRaphson() {
 
     let ER = parseFloat(er);
     let X = parseFloat(x);
+    iarray.splice(0,iarray.length) //clear array everytime user click calculate
+    xarray.splice(0,xarray.length)
     Newtonrap(fx,ER,X)  
   }
 
@@ -52,6 +102,9 @@ function NewtonRaphson() {
       ansdfx.push(Dx.toFixed(6))
       ansxn.push(xnew.toFixed(6))
       anser.push(Er.toFixed(6))
+
+      xarray.push(Dx.toFixed(6));
+      iarray.push(i) //push to store in array (use for render graph)
 
       t+="Iteration: "+ansround[i]+" |X= "+ansx[i]+", Fx= "+ansfx[i]+", Dfx= "+ansdfx[i]+", Xnew= "+ansxn[i]+", Error="+anser[i]+"%"
       t+="<br/>"
@@ -79,7 +132,7 @@ function NewtonRaphson() {
       <button>submit</button>
       </form><br/><br/>    
       <p id='ans'></p>
-
+      <p id='chart'></p>
     </div>
   )
 }

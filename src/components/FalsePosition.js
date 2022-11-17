@@ -1,4 +1,7 @@
 import React,{ useState } from 'react';
+import ApexCharts from 'apexcharts'
+var xmarray = [];
+var iarray = [];
 
 
 function FalsePosition() {
@@ -14,6 +17,50 @@ function FalsePosition() {
     const [xr,setXr] = useState('')
     const [func,setFunc] = useState('')
     const [error,setError] = useState('')
+
+    var xmgraph = xmarray;
+    var igraph = iarray;
+
+    var options = { //graph related
+        chart: {
+          type: 'line',
+          width: '750'
+        },
+        series: [{
+          name: "XM_value",
+          data: xmgraph
+        }],
+        xaxis: {
+          categories: igraph
+        },
+        grid: {
+            row: {
+                colors: ['#e5e5e5', 'transparent'],
+                opacity: 0.5
+            }, 
+            column: {
+                colors: ['#f8f8f8', 'transparent'],
+            }, 
+            xaxis: {
+              lines: {
+                show: true
+              }
+            }
+          },
+          title: {
+            text: 'False-position Graph',
+            align: 'cebter',
+            margin: 10,
+            offsetX: 0,
+            offsetY: 0,
+            floating: false
+        }
+      }
+      
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render(); //render chart (every time that state change)
+
+
     const ansround = []
     const ansxl = []
     const ansfxl = []
@@ -72,6 +119,8 @@ function FalsePosition() {
         xr=x1
       }
       Er = Math.abs((x1-xnew)/x1)*100.0
+      xmarray.push(x1.toFixed(6));
+      iarray.push(i) //push to store in array (use for render graph)
       anser.push(Er.toFixed(6))
       t += "Iteration: "+ansround[i]+" |Xl= "+ansxl[i]+", Fxl= "+ansfxl[i]+", Xr="+ansxr[i]+", Fxr="+ansfxr[i]+", X1="+ansx1[i]+", Fx1="+ansfx1[i]+", Error="+anser[i]+"%";
       t += "<br>"

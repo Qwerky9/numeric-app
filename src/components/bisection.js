@@ -1,4 +1,7 @@
 import React,{ useState } from 'react';
+import ApexCharts from 'apexcharts'
+var xmarray = [];
+var iarray = [];
 
 function Bisection() {
     var Parser = require('expr-eval').Parser;
@@ -14,12 +17,71 @@ function Bisection() {
     const [func,setFunc] = useState('')
     const [error,setError] = useState('')
 
+    var xmgraph = xmarray;
+    var igraph = iarray;
+
+    var options = { //graph related
+        chart: {
+          type: 'line',
+          width: '750'
+        },
+        series: [{
+          name: "XM_value",
+          data: xmgraph
+        }],
+        xaxis: {
+          categories: igraph
+        },
+        grid: {
+            row: {
+                colors: ['#e5e5e5', 'transparent'],
+                opacity: 0.5
+            }, 
+            column: {
+                colors: ['#f8f8f8', 'transparent'],
+            }, 
+            xaxis: {
+              lines: {
+                show: true
+              }
+            }
+          },
+          title: {
+            text: 'Bisection Graph',
+            align: 'cebter',
+            margin: 10,
+            offsetX: 0,
+            offsetY: 0,
+            floating: false
+        }
+      }
+      
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render(); //render chart (every time that state change)
+
+    const ansround = []
+    const ansxl = []
+    const ansfxl = []
+    const ansxr = []
+    const ansfxr = []
+    const ansxm = []
+    const ansfxm = []
+    const anser = []
+
     const submit = e =>{
         e.preventDefault()
         fx = func
         er = error
         l = xl
         r = xr
+        ansround.splice(0)
+        ansxl.splice(0)
+        ansfxl.splice(0)
+        ansxr.splice(0)
+        ansfxr.splice(0)
+        ansxm.splice(0)
+        ansfxm.splice(0)
+        anser.splice(0)
 
     let ER = parseFloat(er);
     let L = parseFloat(l);
@@ -40,11 +102,19 @@ function Bisection() {
         else{ xr=xm }
         let xnew = 0
     let i=0
+    let t = ""
     while(Er>Err){
       xm = (xl+xr)/2.0;
       fxm =  expr.evaluate({ x: xm })
       fxl =  expr.evaluate({ x: xl })
       fxr =  expr.evaluate({ x: xr })
+      ansround.push(i)
+      ansxl.push(xl.toFixed(6))
+      ansfxl.push(fxl.toFixed(6))
+      ansxr.push(xr.toFixed(6))
+      ansfxr.push(fxr.toFixed(6))
+      ansxm.push(xm.toFixed(6))
+      ansfxm.push(fxm.toFixed(6))
       if((fxr*fxm)<=0){
         xnew=xl
         xl=xm
@@ -53,15 +123,14 @@ function Bisection() {
         xnew=xr
         xr=xm 
       }
+      xmarray.push(xm.toFixed(6));
+      iarray.push(i) //push to store in array (use for render graph)
       Er = Math.abs((xm-xnew)/xm)*100.0
-      let finalexm = expr.evaluate({x:xm})
+      anser.push(Er.toFixed(6))
+      t += "Iteration: "+ansround[i]+" |Xl= "+ansxl[i]+", Fxl= "+ansfxl[i]+", Xr="+ansxr[i]+", Fxr="+ansfxr[i]+", X1="+ansxm[i]+", Fx1="+ansfxm[i]+", Error="+anser[i]+"%";
+      t += "<br>"
+      document.getElementById("ans").innerHTML = t;
       i++
-      document.getElementById("r").innerHTML = "Iteration:"+i;
-      document.getElementById("xl").innerHTML = "Xl="+xl+", Fxl="+fxl;
-      document.getElementById("xr").innerHTML = "Xr="+xr+", Fxr="+fxr;
-      document.getElementById("xm").innerHTML = "Xm="+xm+", Fxl="+fxm;
-      document.getElementById("er").innerHTML = "Error="+Er+"%";
-      document.getElementById("result").innerHTML = "Result="+finalexm;
     }
   }
 
@@ -84,12 +153,8 @@ function Bisection() {
 
             <button>submit</button>
         </form><br/><br/>   
-      <p id='r'></p>
-      <p id='xl'></p>
-      <p id='xr'></p>
-      <p id='xm'></p>
-      <p id='er'></p>
-      <p id='result'></p>
+      <p id='ans'></p>
+      <p id = 'chart'></p>
     </div>
   );
   }

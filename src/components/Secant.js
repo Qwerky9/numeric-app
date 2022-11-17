@@ -1,4 +1,7 @@
 import React,{ useState } from 'react'
+import ApexCharts from 'apexcharts'
+var xmarray = [];
+var iarray = [];
 
 function Secant() {
   var Parser = require('expr-eval').Parser;
@@ -12,6 +15,52 @@ function Secant() {
   const [err, seterr] = useState('')
   const [x0, setx0] = useState('')
   const [x1, setx1] = useState('')
+
+  var xmgraph = xmarray;
+  var igraph = iarray;
+
+  var options = { //graph related
+      chart: {
+        type: 'line',
+        width: '750',
+        zoom: {
+          enabled: false
+        }
+      },
+      series: [{
+        name: "X value",
+        data: xmgraph
+      }],
+      xaxis: {
+        categories: igraph
+      },
+      grid: {
+          row: {
+              colors: ['#e5e5e5', 'transparent'],
+              opacity: 0.5
+          }, 
+          column: {
+              colors: ['#f8f8f8', 'transparent'],
+          }, 
+          xaxis: {
+            lines: {
+              show: true
+            }
+          }
+        },
+        title: {
+          text: 'Secant Graph',
+          align: 'center',
+          margin: 10,
+          offsetX: 0,
+          offsetY: 0,
+          floating: false
+      }
+    }
+    
+  var chart = new ApexCharts(document.querySelector("#chart"), options);
+  chart.render(); //render chart (every time that state change)
+  
   const ansround = []
   const ansx0 = []
   const ansx1 = []
@@ -54,6 +103,8 @@ function Secant() {
       ansfx1.push(fxx1.toFixed(6))
 
       xnew = X0-((fxx0*(X0-X1))/(fxx0-fxx1))
+      xmarray.push(X0.toFixed(6));
+      iarray.push(i) //push to store in array (use for render graph)
       Er = Math.abs((xnew-X0)/xnew)*100.0
       X0=X1
       X1=xnew
@@ -108,6 +159,7 @@ function Secant() {
         <button>submit</button>
       </form><br/><br/>    
       <p id='ans'></p>
+      <p id='chart'></p>
     </div>
   )
 }

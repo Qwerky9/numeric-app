@@ -53,30 +53,70 @@ export const SidebarData = [
         iconOpened: <RiIcons.RiArrowUpSFill/>,
         subNav: [
             {
-                title: 'Bisection',
-                path: '/Bisection',
+                title: "Cramer's Rule",
+                path: '/Cramer',
                 icon: <RiIcons.RiCalculatorFill/>
             },
             {
-                title: 'FalsePosition',
-                path: '/FalsePosition',
+                title: 'Guess Elimination',
+                path: '/GuessElim',
                 icon: <RiIcons.RiCalculatorLine/>
             },
             {
-                title: 'OnePointIteration',
-                path: '/OnePointIteration',
+                title: 'Guess-Jordan Elimination',
+                path: '/GuessJordan',
                 icon: <RiIcons.RiCalculatorFill/>
             },
             {
-                title: 'NewtonRaphson',
-                path: '/NewtonRaphson',
+                title: 'Matrix Inversion',
+                path: '/MatrixInversion',
                 icon: <RiIcons.RiCalculatorLine/>
             },
             {
-                title: 'Secant',
-                path: '/Secant',
+                title: 'LU Decomposition',
+                path: '/LUDecomposition',
                 icon: <RiIcons.RiCalculatorFill/>
-            },            
+            },
+            {
+                title: 'Cholesky Decomposition',
+                path: '/CholeskyDecomposition',
+                icon: <RiIcons.RiCalculatorFill/>
+            },
+            {
+                title: 'Jacobi Iteration',
+                path: '/Jacobi',
+                icon: <RiIcons.RiCalculatorFill/>
+            },        
+            {
+                title: 'Guess-Seidel Iteration',
+                path: '/GuessSeidel',
+                icon: <RiIcons.RiCalculatorFill/>
+            },                 
+        ]
+    }
+    ,
+    {
+        title: 'Interpolation and Extrapolation',
+        path: '/components',
+        icon: <FaIcons.FaJs/>,
+        iconClosed: <RiIcons.RiArrowDownSFill/>,
+        iconOpened: <RiIcons.RiArrowUpSFill/>,
+        subNav: [
+            {
+                title: 'Lagrange',
+                path: '/Lagrange',
+                icon: <RiIcons.RiCalculatorFill/>
+            },
+            {
+                title: 'NewtonDivided',
+                path: '/NewtonDivided',
+                icon: <RiIcons.RiCalculatorLine/>
+            },
+            {
+                title: 'Sprine',
+                path: '/Sprine',
+                icon: <RiIcons.RiCalculatorFill/>
+            },      
         ]
     }
 ]
