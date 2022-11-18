@@ -134,7 +134,6 @@ const Langrange = () => {
               <label htmlFor='Size'>&emsp;Number of data :&emsp;</label>
               <input 
                 name='Size'
-                placeholder='Number of size.' 
                 value = {getSize}
                 onChange={event => setSize(event.target.value)}
                 size='11'
@@ -142,7 +141,6 @@ const Langrange = () => {
               <label htmlFor='Xi'>&emsp;Xi :&emsp;</label>
               <input 
                 name='Xi'
-                placeholder='Ex: 3.5 for f(3.5)' 
                 value = {getXi}
                 onChange={event => setXi(event.target.value)}
                 size='11'

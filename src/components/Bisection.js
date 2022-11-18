@@ -4,7 +4,6 @@ import {Table} from 'antd';
 var xmarray = [];
 var iarray = [];
 var dataTable=[]
-
 const columns = [
   {
     title: 'Iteration',
@@ -100,6 +99,20 @@ function Bisection() {
     const ansfxm = []
     const anser = []
 
+    const dataSource = [
+      {
+        key: 1,
+        ansround:ansround[1],
+        ansxl:ansxl[1],
+        ansfxl:ansfxl[1],
+        ansxr:ansxr[1],
+        ansfxr:ansfxr[1],
+        ansxm:ansxm[1],
+        ansfxm:ansfxm[1],
+        anser:anser[1],
+      }
+    ]
+
     const submit = e =>{
         e.preventDefault()
         fx = func
@@ -173,6 +186,7 @@ function Bisection() {
       }]
       i++
     }
+    createTable(i,xl,fxl,xr,fxr,xm,fxm);
   }
 
   return (

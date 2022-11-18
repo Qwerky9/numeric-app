@@ -21,8 +21,12 @@ import CholeskyDecomposition from './components/CholeskyDecomposition';
 import Jacobi from './components/Jacobi';
 import GuessSeidel from './components/GaussSeidel';
 import Langrange from './components/Lagrange';
+<<<<<<< HEAD
 import NewtonDivided from './components/NewtonDivided';
 import Regression from './components/Regression';
+=======
+import NewtonDivided from './components/NewtonDivided'
+>>>>>>> c901b5ae9c8aa9c96ea0586a583d8179ca47f7a4
 
 function App() {
   return (
@@ -46,7 +50,10 @@ function App() {
       <Route path="/GuessSeidel" element={<GuessSeidel />}/>
       <Route path="/Lagrange" element={<Langrange/>}/>
       <Route path="/NewtonDivided" element={<NewtonDivided/>}/>
+<<<<<<< HEAD
       <Route path="/Regression" element={<Regression/>}/>
+=======
+>>>>>>> c901b5ae9c8aa9c96ea0586a583d8179ca47f7a4
       </Routes>
       </BrowserRouter>
     </div>
