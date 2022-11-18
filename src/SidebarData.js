@@ -119,4 +119,19 @@ export const SidebarData = [
             },      
         ]
     }
+    ,
+    {
+        title: 'Regression',
+        path: '/components',
+        icon: <FaIcons.FaJs/>,
+        iconClosed: <RiIcons.RiArrowDownSFill/>,
+        iconOpened: <RiIcons.RiArrowUpSFill/>,
+        subNav: [
+            {
+                title: 'Regression',
+                path: '/Regression',
+                icon: <RiIcons.RiCalculatorFill/>
+            },   
+        ]
+    }
 ]

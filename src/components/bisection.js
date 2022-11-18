@@ -1,7 +1,37 @@
 import React,{ useState } from 'react';
 import ApexCharts from 'apexcharts'
+import {Table} from 'antd';
 var xmarray = [];
 var iarray = [];
+var dataTable=[]
+
+const columns = [
+  {
+    title: 'Iteration',
+    dataindex: 'iteration',
+    key: 'iteration',
+  },
+  {
+    title: 'Xl',
+    dataindex: "xl",
+    key: "xl",
+  },
+  {
+    title: 'Xr',
+    dataindex: "xr",
+    key: "xr",
+  },
+  {
+    title: 'X1',
+    dataindex: "xm",
+    key: "xm",
+  },
+  {
+    title: 'Error',
+    dataindex: "er",
+    key: "er",
+  },
+]
 
 function Bisection() {
     var Parser = require('expr-eval').Parser;
@@ -55,6 +85,8 @@ function Bisection() {
             floating: false
         }
       }
+
+    
       
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render(); //render chart (every time that state change)
@@ -104,6 +136,7 @@ function Bisection() {
     let i=0
     let t = ""
     while(Er>Err){
+      dataTable=[]
       xm = (xl+xr)/2.0;
       fxm =  expr.evaluate({ x: xm })
       fxl =  expr.evaluate({ x: xl })
@@ -115,6 +148,7 @@ function Bisection() {
       ansfxr.push(fxr.toFixed(6))
       ansxm.push(xm.toFixed(6))
       ansfxm.push(fxm.toFixed(6))
+
       if((fxr*fxm)<=0){
         xnew=xl
         xl=xm
@@ -130,10 +164,16 @@ function Bisection() {
       t += "Iteration: "+ansround[i]+" |Xl= "+ansxl[i]+", Fxl= "+ansfxl[i]+", Xr="+ansxr[i]+", Fxr="+ansfxr[i]+", X1="+ansxm[i]+", Fx1="+ansfxm[i]+", Error="+anser[i]+"%";
       t += "<br>"
       document.getElementById("ans").innerHTML = t;
+      dataTable = [{
+        iteration:i+1,
+        xl:fxl,
+        xr:fxr,
+        xm:fxm,
+        er:Er
+      }]
       i++
     }
   }
-
 
   return (
     <div className='bisection'>
@@ -153,8 +193,9 @@ function Bisection() {
 
             <button>submit</button>
         </form><br/><br/>   
-      <p id='ans'></p>
+        <p id = 'ans'></p>
       <p id = 'chart'></p>
+      <Table dataSource={dataTable} columns={columns}/>
     </div>
   );
   }
