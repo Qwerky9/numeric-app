@@ -1,7 +1,51 @@
 import React,{ useState } from 'react';
 import ApexCharts from 'apexcharts'
+import {Table} from 'antd';
 var xmarray = [];
 var iarray = [];
+var dataTable=[]
+const columns = [
+  {
+    title: 'Iteration',
+    dataindex: 'iteration',
+    key: 'iteration',
+  },
+  {
+    title: 'Xl',
+    dataindex: 'xl',
+    key: 'xl',
+  },
+  {
+    title: 'Fxl',
+    dataindex: 'fxl',
+    key: 'fxl',
+  },
+  {
+    title: 'Xr',
+    dataindex: 'xr',
+    key: 'xr',
+  },
+  {
+    title: 'Fxr',
+    dataindex: 'fxr',
+    key: 'fxr',
+  },
+  {
+    title: 'X1',
+    dataindex: 'xm',
+    key: 'xm',
+  },
+  {
+    title: 'Fx1',
+    dataindex: 'fxm',
+    key: 'fxm',
+  },
+  {
+    title: 'Error',
+    dataindex: 'er',
+    key: 'er',
+  },
+]
 
 function Bisection() {
     var Parser = require('expr-eval').Parser;
@@ -55,6 +99,8 @@ function Bisection() {
             floating: false
         }
       }
+
+    
       
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render(); //render chart (every time that state change)
@@ -67,6 +113,20 @@ function Bisection() {
     const ansxm = []
     const ansfxm = []
     const anser = []
+
+    const dataSource = [
+      {
+        key: 1,
+        ansround:ansround[1],
+        ansxl:ansxl[1],
+        ansfxl:ansfxl[1],
+        ansxr:ansxr[1],
+        ansfxr:ansfxr[1],
+        ansxm:ansxm[1],
+        ansfxm:ansfxm[1],
+        anser:anser[1],
+      }
+    ]
 
     const submit = e =>{
         e.preventDefault()
@@ -115,6 +175,7 @@ function Bisection() {
       ansfxr.push(fxr.toFixed(6))
       ansxm.push(xm.toFixed(6))
       ansfxm.push(fxm.toFixed(6))
+
       if((fxr*fxm)<=0){
         xnew=xl
         xl=xm
@@ -132,8 +193,22 @@ function Bisection() {
       document.getElementById("ans").innerHTML = t;
       i++
     }
+    createTable(i,xl,fxl,xr,fxr,xm,fxm);
   }
-
+function createTable(i,xl,fxl,xr,fxr,xm,fxm){
+  dataTable=[]
+  for (let i=0;i<xl.length;i++){
+    dataTable.push({
+      iteration:i+1,
+      xl:xl,
+      fxl:fxl,
+      xr:xr,
+      fxr:fxr,
+      xm:xm,
+      fxm:fxm,
+    })
+  }
+}
 
   return (
     <div className='bisection'>
@@ -153,7 +228,7 @@ function Bisection() {
 
             <button>submit</button>
         </form><br/><br/>   
-      <p id='ans'></p>
+      <Table dataSource={dataSource} columns={columns}/>
       <p id = 'chart'></p>
     </div>
   );

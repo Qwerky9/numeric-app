@@ -1,9 +1,11 @@
-import React from 'react'
+import React,{ Component } from 'react'
 import { useState } from 'react'
 
+
+//this likely not gonna finish in time
 //refactor code from class component to functional component
 
-const NewtonDivided = () => {
+const NewtonDevided = () => {
     var Size
     var Xi;
     var array=[];
@@ -72,7 +74,7 @@ const NewtonDivided = () => {
         }
       }
 
-      NewtonCalc();
+      LangrangeCalc();
       printEachLterm();
 
       array = [];//clear array for next inc array input
@@ -80,9 +82,9 @@ const NewtonDivided = () => {
       Lterm = [];
     }
 
-    function NewtonCalc()
+    function LangrangeCalc()
     {
-      console.log("NewtonCalc")
+      console.log("LangrangeCalc")
       console.log(array)
 
         //langrange cal
@@ -91,9 +93,9 @@ const NewtonDivided = () => {
             let term = array[a][1];
             for(var b=0;b<Size;b++)
             {
-                if(b!==a)
+                if(b!=a)
                 {
-                    term = term*(array[a][0] - array[b][0])/(array[a][0]-array[b][0])
+                    term = term*(Xi - array[b][0])/(array[a][0]-array[b][0])
                 }
             }
             // Add current term to result
@@ -130,11 +132,10 @@ const NewtonDivided = () => {
         <div>
           <form onSubmit={getValue}>
             <div>
-                <h1>&emsp;Newton Divided&emsp;</h1>
+                <h1>&emsp;Newton's devided difference&emsp;</h1>
               <label htmlFor='Size'>&emsp;Number of data :&emsp;</label>
               <input 
                 name='Size'
-                placeholder='Number of size.' 
                 value = {getSize}
                 onChange={event => setSize(event.target.value)}
                 size='11'
@@ -142,7 +143,6 @@ const NewtonDivided = () => {
               <label htmlFor='Xi'>&emsp;Xi :&emsp;</label>
               <input 
                 name='Xi'
-                placeholder='Ex: 3.5 for f(3.5)' 
                 value = {getXi}
                 onChange={event => setXi(event.target.value)}
                 size='11'
@@ -167,4 +167,5 @@ const NewtonDivided = () => {
     )
 }
 
-export default NewtonDivided
+
+export default NewtonDevided

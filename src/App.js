@@ -21,6 +21,7 @@ import CholeskyDecomposition from './components/CholeskyDecomposition';
 import Jacobi from './components/Jacobi';
 import GuessSeidel from './components/GaussSeidel';
 import Langrange from './components/Lagrange';
+import NewtonDivided from './components/NewtonDivided'
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
       <Route path="/Jacobi" element={<Jacobi />}/>
       <Route path="/GuessSeidel" element={<GuessSeidel />}/>
       <Route path="/Lagrange" element={<Langrange/>}/>
+      <Route path="/NewtonDivided" element={<NewtonDivided/>}/>
       </Routes>
       </BrowserRouter>
     </div>

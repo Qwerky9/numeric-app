@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ApexCharts from 'apexcharts'
+const math = require('mathjs');
 var xmarray = [];
 var iarray = [];
 
