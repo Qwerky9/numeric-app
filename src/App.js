@@ -21,9 +21,10 @@ import CholeskyDecomposition from './components/CholeskyDecomposition';
 import Jacobi from './components/Jacobi';
 import GuessSeidel from './components/GaussSeidel';
 import Langrange from './components/Lagrange';
-import NewtonDivided from './components/NewtonDivided';
+import NewtonDevided from './components/NewtonDivided';
 import Regression from './components/Regression';
-import NewtonDivided from './components/NewtonDivided'
+import RegressionMulti from './components/RegressionMulti';
+
 
 function App() {
   return (
@@ -37,7 +38,7 @@ function App() {
       <Route path="/OnePointIteration" element={<OnePointIteration/>}/>
       <Route path="/NewtonRaphson" element={<NewtonRaphson/>}/>
       <Route path="/Secant" element={<Secant/>}/>
-      <Route path="/Cramer" element={<Cramer />} />
+      <Route path="/Cramer" element={<Cramer/>} />
       <Route path="/GuessElim" element={<GuessElim />}/>
       <Route path="/GuessJordan" element={<GuessJordan />}/>
       <Route path="/MatrixInversion" element={<MatrixInversion />}/>
@@ -46,8 +47,9 @@ function App() {
       <Route path="/Jacobi" element={<Jacobi />}/>
       <Route path="/GuessSeidel" element={<GuessSeidel />}/>
       <Route path="/Lagrange" element={<Langrange/>}/>
-      <Route path="/NewtonDivided" element={<NewtonDivided/>}/>
+      <Route path="/NewtonDivided" element={<NewtonDevided/>}/>
       <Route path="/Regression" element={<Regression/>}/>
+      <Route path="/RegressionMulti" element={<RegressionMulti/>}/>
       </Routes>
       </BrowserRouter>
     </div>

@@ -131,7 +131,12 @@ export const SidebarData = [
                 title: 'Regression',
                 path: '/Regression',
                 icon: <RiIcons.RiCalculatorFill/>
-            },   
+            },
+            {
+                title: 'Regression Multi',
+                path: '/RegressionMulti',
+                icon: <RiIcons.RiCalculatorFill/>
+            },     
         ]
     }
 ]

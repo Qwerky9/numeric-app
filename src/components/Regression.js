@@ -25,6 +25,8 @@ const Regression = () => {
     const [getDegree,setDegree] = useState('')
     const [getXi,setXi] = useState('')
 
+    var textt,value;
+
     var options = { //graph related
       chart: {
         type: 'line',
@@ -79,7 +81,38 @@ const Regression = () => {
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 
-    
+    var getexam = e => {
+      e.preventDefault();
+      //get index 
+      var d = document.getElementById("example")
+      value = d.value;
+      textt = d.options[d.selectedIndex].text;
+      console.log(value)
+      console.log(textt)
+      //set value from api and set to input form
+      if(value!=0) //if option is select get data from api
+
+
+      //json-server --watch db.json --port xxxxx
+      //อย่าลืมเรียก terminal แล้วรัน Server ก่อน
+      //ดึงข้อมูลจาก  json server
+      {
+          fetch('http://localhost:3001/RegressionExample') //
+          .then(res => {
+            console.log(res)
+          return res.json(); //check respond
+          })
+          .then(data => {
+          console.log(data) //show db.json
+          console.log(data[value]) // console.log for shit
+          setSize(data[value].getSize)
+          setDegree(data[value].getDegree)
+          setXi(data[value].getXi)
+        })
+        .catch(err => console.log(err))
+      }
+      getValue();
+    }      
     
     var getValue = e => {//hale input event and pass value to function
         e.preventDefault();
@@ -317,6 +350,11 @@ const Regression = () => {
                 size='3'
               />
             <p></p>
+            <label htmlFor='example'>&emsp;example :&emsp;</label>
+          <select name="example" id="example" onChange={getexam}>
+                <option disabled selected value="0">Select โจทย์</option>
+                <option value="1">ตัวอย่าง 1</option>
+                </select>
             <p>
             <div>
             &emsp;<button>Submit</button>
